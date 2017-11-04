@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+ <appender name="ROLLIN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>D:\workspace\logs\productService.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- daily rollover -->
+      <fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+      <maxHistory>30</maxHistory>
+      <totalSizeCap>3GB</totalSizeCap>
+
+    </rollingPolicy>
+
+    <encoder>
+      <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-5relative %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="ROLLIN" />
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <logger name="org.springframework.web" level="INFO"/>
+</configuration>

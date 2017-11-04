@@ -1,0 +1,7 @@
+applications:
+- name: product-service
+  memory: 512M
+  instances: 1
+  host: product-service
+  buildpack: java_buildpack
+  path: ./target/product-service-1.0.jar
